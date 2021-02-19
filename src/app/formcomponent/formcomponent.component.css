@@ -1,0 +1,31 @@
+.invalidInput{
+    color: red;
+    font-size: 20px;
+}
+input.ng-invalid{
+    border:solid 1px red;
+}
+textarea.ng-invalid{
+    border:solid 1px red;
+}
+.formContainer{
+    margin-top:80px;
+    margin-bottom: 80px;
+    background: aquamarine;
+    padding: 75px;
+}
+.header{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.radioBtn{
+    display: flex;
+}
+.checkbox+.checkbox, .radio+.radio{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.radio{
+    margin-top: 10px;
+}

@@ -1,0 +1,30 @@
+<div class="container loginWrapper">
+    <div class="row outerCover">
+        <div class="col-xs-12 col-sm-12 cardWrapper">
+            <div class="welcome">Welcom Back!!!</div>
+            <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                    <label for="Email Id">Email Id</label>
+                    <input 
+                    type="text" 
+                    id="mailId" 
+                    class="form-control"
+                    formControlName="mailId"
+                    required>
+                  </div>
+                  <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input 
+                    type="text" 
+                    id="password" 
+                    class="form-control"
+                    formControlName="password"
+                    required>
+                  </div>
+                  <div class="logIn">
+                  <button class="btn btn-primary" type="submit">Log in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

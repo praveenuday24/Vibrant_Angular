@@ -1,0 +1,25 @@
+
+<app-header></app-header>
+<div class="container homeContainer">
+    <div >
+        <div class=" userBtns">
+            <button class="btn btn-primary listUser" (click)="onListUsers()">List Users</button>
+            <button class="btn btn-primary createUser" (click)="onCreateUser()">Create User</button>
+        </div>
+        <div class="userContainer">
+            <div class="row userCard" *ngFor="let user of UsersList;let i = index">
+                <div class="image col-md-5 col-sm-5">
+                    <img src={{user.avatar}}>
+                </div>
+                <div class="userDetails col-md-7 col-sm-7">
+                    <div>Name: {{user.first_name}} {{user.last_name}}</div>
+                    <div>Mail Id:{{user.email}}</div>
+                    <div class="userActionBtns">
+                        <button class="btn btn-primary" (click)="onUpdate(user)">Update</button>
+                        <button class="btn btn-secondary" (click)="onDelete(user.id,i)">Delete</button>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
