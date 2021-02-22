@@ -19,8 +19,8 @@ export class FormcomponentComponent implements OnInit {
   ngOnInit(): void {
     this.signUpForm= new FormGroup({
       'userPrimeData': new FormGroup({
-        'firstname': new FormControl(null,[Validators.required]),
-        'lastname': new FormControl(null,[Validators.required]),
+        'first_name': new FormControl(null,[Validators.required]),
+        'last_name': new FormControl(null,[Validators.required]),
         'username': new FormControl(null,[Validators.required]),
         'email' : new FormControl(null,[Validators.required,Validators.email]),
         'gender' : new FormControl('male'),
@@ -32,9 +32,9 @@ export class FormcomponentComponent implements OnInit {
     if(this.loginService.formActionType == "update"){
       this.signUpForm.patchValue({
         'userPrimeData':{
-          'firstname':this.loginService.updateUserDetails.first_name,
-          'lastname':this.loginService.updateUserDetails.last_name,
-          'email' :this.loginService.updateUserDetails.email
+          'first_name':this.loginService.currentUpdatingUserDetails.first_name,
+          'lastn_name':this.loginService.currentUpdatingUserDetails.last_name,
+          'email' :this.loginService.currentUpdatingUserDetails.email
         }
       });
       this.actionType=this.loginService.formActionType;
@@ -47,9 +47,10 @@ export class FormcomponentComponent implements OnInit {
     if(!(this.loginService.formActionType == "update")){
       this.postData = this.signUpForm.value.userPrimeData;
       this.http.post('https://reqres.in/api/users', this.postData).subscribe(data => {
-          console.log(data);
+          // console.log(data);
           alert("User Created");
       })
+      this.postData.avatar=this.loginService.userList[0].avatar;
       this.loginService.userList.push(this.postData);
       this.router.navigate(['/home']);
     }

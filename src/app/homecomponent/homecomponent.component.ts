@@ -16,13 +16,12 @@ export class HomecomponentComponent implements OnInit {
   @Output() updateClicked = new EventEmitter();
 
   ngOnInit() {
-    this.loginService.getUsersList();
+    if(!(this.loginService.userList.length > 1)){
+        this.loginService.getUsersList();
+        alert("API Called");
+    }
   }
   onListUsers(){
-   this.addListUsers();
-  }
-
-  addListUsers(){
     this.UsersList=this.loginService.userList;
   }
 
@@ -35,7 +34,7 @@ export class HomecomponentComponent implements OnInit {
   onDelete(id:any,index:any){
     const endpoint = 'https://reqres.in/api/users/' + id;
     this.http.delete(endpoint).subscribe(data => {
-      console.log(data);
+      // console.log(data);
   })
     this.UsersList.splice(index,1);
     setTimeout(()=>{

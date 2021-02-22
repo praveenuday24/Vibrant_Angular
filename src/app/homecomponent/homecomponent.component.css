@@ -24,3 +24,6 @@
 .userDetails{
     padding: 20px;
 }
+.btn:not(:last-child){
+    margin-right: 20px;
+}

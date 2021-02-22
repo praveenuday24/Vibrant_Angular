@@ -15,10 +15,11 @@ export class LoginServiceService {
     mailId:"praveenuday24@gmail.com",
     password:"qwerty"
   }
+  currentUserDetails:any={};
   formActionType:string="";
   private loginSuccess=false;
   loginValue : Subject<boolean> = new Subject<boolean>();
-  updateUserDetails:any={};
+  currentUpdatingUserDetails:any={};
   userList:any=[];
   constructor(private http: HttpClient) { 
 
@@ -37,14 +38,21 @@ export class LoginServiceService {
   }
 
   getDetailsOnUpdate(user:any){
-   this.updateUserDetails=user;
-   this.updateUserData(user);
+   this.currentUpdatingUserDetails=user;
   }
 
-  updateUserData(userData:any){
-    this.http.post("https://reqres.in/api/user"+userData.id,userData).subscribe(data => {
-      console.log(data);
-  })
+  updateUserData(updateUserDetails:any){
+    this.currentUserDetails=this.currentUpdatingUserDetails;
+    this.http.post("https://reqres.in/api/user"+this.currentUserDetails.id,updateUserDetails).subscribe(data => {
+      // console.log(data);
+  });
+  var currentId=this.currentUserDetails.id;
+
+  var index = this.userList.findIndex((p: { id: number; }) => p.id == currentId);
+  this.userList[index].first_name=updateUserDetails.userPrimeData.first_name;
+  this.userList[index].last_name=updateUserDetails.userPrimeData.last_name;
+  this.userList[index].email=updateUserDetails.userPrimeData.email;
+
   }
 
   
